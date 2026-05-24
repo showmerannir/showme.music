@@ -45,10 +45,8 @@ function buildContactContext(contacts: Contact[]): string {
   const primary = contacts.find((c) => c.is_primary) ?? contacts[0]
   if (!primary) return 'No contact information available.'
 
-  const name =
-    primary.full_name ??
-    [primary.first_name, primary.last_name].filter(Boolean).join(' ') ||
-    'there'
+  const joinedName = [primary.first_name, primary.last_name].filter(Boolean).join(' ')
+  const name = primary.full_name ?? (joinedName || 'there')
 
   const parts = [`Primary contact: ${name}`]
   if (primary.title) parts.push(`Title: ${primary.title}`)

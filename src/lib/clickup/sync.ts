@@ -49,10 +49,8 @@ function buildLeadDescription(lead: Lead, contacts: Contact[]): string {
     lines.push(``)
     lines.push(`## Contacts`)
     for (const contact of contacts) {
-      const name =
-        contact.full_name ??
-        [contact.first_name, contact.last_name].filter(Boolean).join(' ') ||
-        'Unknown'
+      const joinedName = [contact.first_name, contact.last_name].filter(Boolean).join(' ')
+      const name = contact.full_name ?? (joinedName || 'Unknown')
       lines.push(`### ${name}${contact.is_primary ? ' (Primary)' : ''}`)
       if (contact.title) lines.push(`- Title: ${contact.title}`)
       if (contact.email) lines.push(`- Email: ${contact.email}`)
@@ -73,10 +71,8 @@ function buildContactComment(contacts: Contact[]): string {
   const lines: string[] = ['📋 **Contact Information Update**', '']
 
   for (const contact of contacts) {
-    const name =
-      contact.full_name ??
-      [contact.first_name, contact.last_name].filter(Boolean).join(' ') ||
-      'Unknown'
+    const joinedName = [contact.first_name, contact.last_name].filter(Boolean).join(' ')
+    const name = contact.full_name ?? (joinedName || 'Unknown')
 
     lines.push(`**${name}**${contact.is_primary ? ' ⭐ Primary' : ''}`)
     if (contact.title) lines.push(`  Title: ${contact.title}`)

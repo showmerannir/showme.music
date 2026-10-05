@@ -1,0 +1,8 @@
+recordings/
+renders/
+*.mp4
+*.mov
+*.wav
+*.mp3
+auth/
+.env
